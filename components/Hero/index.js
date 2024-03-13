@@ -12,7 +12,7 @@ export const Hero = () => {
             </div>
             <div className='bg-white text-black text-[12px] px-5 py-2 w-fit rounded-3xl flex items-center mt-10 cursor-pointer'>
                 <Link href={'/login'}>
-                     Let’s keep track of  our dreams
+                     Let&apos;s keep track of  our dreams
                 </Link>
                 <Image src="/Rightarrow.svg" className='ml-[20px]' width={30} height={15} alt="Icon" />
             </div>

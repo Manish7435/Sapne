@@ -1,53 +1,36 @@
 "use client";
 
-import { connectToDatabase } from "@/lib/mongodb";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const { register, handleSubmit, reset } = useForm();
-  const router = useRouter();
+  const { register, handleSubmit, formState :{errors} } = useForm();
+
+  const router = useRouter()
+
+  const [error, setError]= useState("")
 
   const onSubmit = async (data) => {
-    const { name, email, password } = data;
-    await connectToDatabase();
-
-    fetch("/api/user/exists");
-    try {
-      const userExists = await fetch("/api/user/exists", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const { user } = await userExists.json();
-
-      if (user) {
-        console.log("user already exists");
-        return;
+    const {email, password} = data
+   
+   try{
+    const res =  await signIn('credentials',{
+        email,
+        password,
+        redirect: false
+      })
+    
+      if(res.error){
+        setError('wrong credentials')
       }
-
-      const res = await fetch("/api/user/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-
-      if (res.ok) {
-        reset();
-        router.push("/login");
-      } else {
-        console.log("user registartion failed");
-      }
-    } catch (e) {
-      console.log("error while user registration");
-    }
+      router.replace('dreams')
+     
+   }catch(e){
+      console.log('dssefsdfsd',e)
+   }
   };
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center bg-cover bg-login-bg ">
@@ -59,6 +42,9 @@ const Login = () => {
         >
           <input type="text" placeholder="Email" {...register("email")} />
           <input type="text" placeholder="Password" {...register("password")} />
+          {error && <div className="bg-red">
+            {error}
+            </div>}
           <input
             type="submit"
             className="bg-[#FA7484] px-8 py-2 rounded-md flex justify-center cursor-pointer font-medium w-[300px]"
