@@ -23,7 +23,6 @@ export const authOptions = {
                     if(!passwordMatch){
                         return null
                     }
-                    console.log('cdzcsdvsdv',user)
                     return user
 
                }catch(e){

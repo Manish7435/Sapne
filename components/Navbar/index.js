@@ -1,10 +1,17 @@
-import Image from 'next/image'
+'use client'
+
+// import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { signOut } from 'next-auth/react';
 
 export const Navebar = () => {
 
   const navItems = ["Home","Dreams", "MyDreams"]
+
+  const handleSignOut = ()=>{
+    signOut()
+  }
  
   return (
     <div className={` text-[#4673CA] w-full text-[14px] px-28 py-3 fixed`}>
@@ -23,8 +30,9 @@ export const Navebar = () => {
             <div className='cursor-pointer'>
                  Profile
             </div>
-            <div className='cursor-pointer'>
-                 <Image src={'/MProfile.svg'} height={30} width={30} alt='profile'/>
+            <div className='cursor-pointer' onClick={handleSignOut}>
+              SignOut
+                 {/* <Image src={'/MProfile.svg'} height={30} width={30} alt='profile'/> */}
             </div>
           </div>
         </li>

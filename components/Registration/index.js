@@ -13,8 +13,6 @@ const Register = () => {
   const onSubmit = async (data) => {
     const { name, email, password } = data;
     await connectToDatabase();
-
-    fetch("/api/user/exists");
     try {
       const userExists = await fetch("/api/user/exists", {
         method: "POST",

@@ -26,7 +26,9 @@ const Login = () => {
       if(res.error){
         setError('wrong credentials')
       }
+      if(res.ok){
       router.replace('dreams')
+    }
      
    }catch(e){
       console.log('dssefsdfsd',e)

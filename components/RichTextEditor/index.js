@@ -1,76 +1,94 @@
-'use client'
+import { connectToDatabase } from "@/lib/mongodb";
+import React, { useRef, useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
-import React, { useRef, useState } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
-const RichTextEditor = () => {
-  const editorRef = useRef(null);
-  const [title, setTitle] = useState('');
-  const [tags, setTags] = useState('');
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
-
-  const onEditorStateChange = (newEditorState) => {
-    setEditorState(newEditorState);
-  };
-
-  const toolbarOptions = {
-    options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image'],
-    inline: {
-      options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace'],
-    },
-    blockType: {
-      options: ['Normal', 'Blockquote'],
-    },
-    list: {
-      options: ['unordered', 'ordered'],
-    },
-    textAlign: {
-      options: ['left', 'center'],
+function RichTextEditor() {
+  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [tag, setTag] = useState("");
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image", "video"],
+    ],
+    clipboard: {
+      matchVisual: false,
     },
   };
 
-  const focusEditor = () => {
-    if (editorRef.current) {
-      editorRef.current.focusEditor();
-    }
-  };
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+  ];
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleTagsChange = (e) => {
-    setTags(e.target.value);
+  const handleSaveContent = async() => {
+    await connectToDatabase()
+    try{
+      const res = await fetch('/api/dream/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({title, tag, dream: content})
+      })
+      if(res.ok){
+        console.log('dream stored successfully')
+      }
+    }catch(e){
+      console.log('error while storing dream',e)
+    }    
   };
 
   return (
     <>
-      <div>
-        <input type="text" value={title} onChange={handleTitleChange} placeholder="Title" className='w-full h-[40px] mb-4 rounded-md p-2 outline-none text-white bg-[#18181B]' />
-      </div>
-      <div>
-        <input type="text" value={tags} onChange={handleTagsChange} placeholder="Tag.... horror / happy / sad / disappoinment /   seduction / exciting" className='w-full h-[40px] mb-4 rounded-md p-2 text-white outline-none bg-[#18181B]' />
-      </div>
-      <div className='bg-[#18181B] w-full h-96 overflow-y-auto pt-2 px-2 rounded-lg text-white' onClick={focusEditor}>
-        <Editor
-          toolbarStyle={{backgroundColor: '#18181B', color: 'black', outline: 'yellow'}}
-          editorState={editorState}
-          onEditorStateChange={onEditorStateChange}
-          toolbar={toolbarOptions}
-          ref={editorRef}
-          editorStyle={{color: 'white'}}
-         
+      <input
+        className="border-none outline-none w-full bg-[#1B1B1B] text-[#444]"
+        placeholder="Title"
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        className="border-none outline-none w-full bg-[#1B1B1B] text-[#444]"
+        placeholder="Tag"
+        onChange={(e) => setTag(e.target.value)}
+      />
+      <div className=" rounded-lg overflow-hidden">
+        <ReactQuill
+          theme="snow"
+          value={content}
+          onChange={setContent}
+          className="border-none bg-[#1B1B1B] h-96 text-[#444] "
+          modules={modules}
+          formats={formats}
         />
       </div>
-      <button onClick={() => console.log({ title, tags, content: convertToRaw(editorState.getCurrentContent()) })} className='text-[#4673CA]'>
-        Save
+      <button
+        onClick={handleSaveContent}
+        className="bg-slate-600 rounded-lg px-3 py-1 mt-4"
+      >
+        Save Content
       </button>
     </>
   );
-};
-
+}
 export default RichTextEditor;
