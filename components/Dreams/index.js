@@ -14,7 +14,6 @@ const Dreams =() => {
         await connectToDatabase();
         const res = await fetch('/api/dream/get'); // Relative URL
         const data = await res.json();
-        console.log(data.dreams)
         setDreams(data.dreams);
       } catch (error) {
         console.error('Error fetching dreams:', error);
@@ -25,27 +24,25 @@ const Dreams =() => {
 
   }, []);
 
-  useEffect(() => {
-    console.log('Updated dreams:', dreams);
-  }, [dreams]);
   return (
     <div className='bg-[#0A0B07] h-screen overflow-y-scroll'>
-     
         <Container >
-            {/* <div className='bg-[#4673CA] h-[600px] w-[1px] mr-8'></div> */}
-            {dreams && dreams.map((dream)=>{
-              return(
-                <div key = {dream._id} className='bg-[#CCC0FB] mt-32 rounded-lg p-4'>
-                  <div className='text-xl font-extrabold text-lime-500'> {dream.title}</div>
-                  <div className='text-lg font-bold'>{dream.tag}</div>
-                  <div dangerouslySetInnerHTML={{ __html: dream.dream }}></div>
-                </div>
-              )
-
-            })}          
-            {/* <div className='bg-[#4673CA] h-[600px] w-[1px] ml-8'></div> */}
+          <div className='flex'>
+            <div className=' bg-[#4673CA] w-[1px] mr-8'></div>
+            <div className='flex flex-col'>
+              {dreams && dreams.map((dream)=>{
+                return(
+                  <div key = {dream._id} className='bg-[#CCC0FB] mt-32 rounded-lg p-4'>
+                    <div className='text-xl font-extrabold text-lime-500'> {dream.title}</div>
+                    <div className='text-lg font-bold'>{dream.tag}</div>
+                    <div dangerouslySetInnerHTML={{ __html: dream.dream }}></div>
+                  </div>
+                )
+              })}          
+            </div>
+            <div className='bg-[#4673CA] w-[1px] ml-8'></div>
+          </div>
         </Container>
-
     </div>
 
   )

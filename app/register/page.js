@@ -3,9 +3,9 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from '../api/auth/[...nextauth]/route';
 
-export default function Registeration(){
+export default async function Registeration(){
 
-    const session = getServerSession(authOptions)
+    const session = await getServerSession(authOptions)
          if(session) redirect('/')
     return <Register/>
 }

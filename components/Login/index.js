@@ -7,7 +7,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const { register, handleSubmit, formState :{errors} } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const router = useRouter()
 
@@ -18,7 +18,7 @@ const Login = () => {
    
    try{
     const res =  await signIn('credentials',{
-        email,
+        email: email.toLowerCase(),
         password,
         redirect: false
       })
@@ -31,7 +31,7 @@ const Login = () => {
     }
      
    }catch(e){
-      console.log('dssefsdfsd',e)
+      console.log('error while login',e)
    }
   };
   return (

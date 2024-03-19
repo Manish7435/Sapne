@@ -5,6 +5,7 @@ import  CredentialsProvider  from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs'
 
 export const authOptions = {
+
     providers: [
         CredentialsProvider({
             name: 'credentials',
@@ -23,6 +24,7 @@ export const authOptions = {
                     if(!passwordMatch){
                         return null
                     }
+                    
                     return user
 
                }catch(e){

@@ -34,12 +34,12 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name: name.toLowerCase(), email: email.toLowerCase(), password }),
       });
 
       if (res.ok) {
         reset();
-        router.push("/login");
+        router.push("/dreams");
       } else {
         console.log("user registartion failed");
       }

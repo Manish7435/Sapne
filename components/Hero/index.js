@@ -17,6 +17,7 @@ export const Hero = () => {
                 <Image src="/Rightarrow.svg" className='ml-[20px]' width={30} height={15} alt="Icon" />
             </div>
         </div>
+        
         <div className="grid grid-cols-3 w-[500px] ml-32 gap-3 ">
             <div className="relative overflow-hidden row-span-3 bg-white p-3 rounded-md">
                 <Image
