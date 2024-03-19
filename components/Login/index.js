@@ -5,8 +5,18 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+// import { useSession } from 'next-auth/react';
+// import { useSelector, useDispatch } from 'react-redux';
+
 
 const Login = () => {
+
+  // const { data: session} = useSession();
+
+  // const userData = useSelector((state)=>state)
+
+  // console.log('userDatauserData',userData)
+
   const { register, handleSubmit } = useForm();
 
   const router = useRouter()
