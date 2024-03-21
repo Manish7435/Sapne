@@ -4,9 +4,9 @@ import Dream from "@/models/dream";
 
 export async function POST(req) {
   try {
-    const { title, tag, dream } = await req.json();
+    const { title, tag, dream ,dreamerId} = await req.json();
     await connectToDatabase()
-    await Dream.create({ title, tag, dream });
+    await Dream.create({ title, tag, dream, dreamerId }); 
 
     return NextResponse.json({ message: "dream stored." }, { status: 201 });
   } catch (error) {

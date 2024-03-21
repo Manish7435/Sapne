@@ -14,6 +14,10 @@ const dreamSchema = new Schema(
       type: String,
       required: true,
     },
+    dreamerId: {
+      type: String,
+      required: true,
+    }
   },
   { timestamps: true }
 );

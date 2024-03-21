@@ -10,7 +10,7 @@ function MyDream() {
   dynamic(() => import('../RichTextEditor')) : null;
   return (
     <div className='bg-[#0A0B07] h-screen'>
-        <Container className='bg-[#0A0B07]'>
+        <Container>
         {DynamicRichTextEditor && <DynamicRichTextEditor />}
         </Container>
     </div>

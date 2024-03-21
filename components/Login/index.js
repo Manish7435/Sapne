@@ -5,23 +5,22 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-// import { useSession } from 'next-auth/react';
-// import { useSelector, useDispatch } from 'react-redux';
-
+import { useSession } from 'next-auth/react';
+import {setCookie} from "@/utils/cookies";
 
 const Login = () => {
 
-  // const { data: session} = useSession();
-
-  // const userData = useSelector((state)=>state)
-
-  // console.log('userDatauserData',userData)
+  const {data} = useSession();
 
   const { register, handleSubmit } = useForm();
 
   const router = useRouter()
 
   const [error, setError]= useState("")
+
+  if(data){
+    setCookie('user_id',data?.token.sub)
+  }
 
   const onSubmit = async (data) => {
     const {email, password} = data
@@ -32,7 +31,6 @@ const Login = () => {
         password,
         redirect: false
       })
-    
       if(res.error){
         setError('wrong credentials')
       }
