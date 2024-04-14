@@ -5,7 +5,8 @@ import Dream from "@/models/dream";
 export async function GET() {
   try {
     await connectToDatabase()
-    const dreams = await Dream.find()
+    const security = 'Public'
+    const dreams = await Dream.find({security})
     return NextResponse.json({ dreams }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

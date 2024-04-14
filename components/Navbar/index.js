@@ -22,7 +22,7 @@ let bgColor = '#FFFFFF'
   const splittedRouter = router.split('/')
  
   return (
-    <div className={`bg-${bgColor} text-[#AEB6D2] w-full text-[14px] px-28 py-3 fixed z-40`}>
+    <div className={`text-[#AEB6D2] w-full text-[14px] px-28 py-6 fixed z-40`} style={{background: bgColor}}>
       <ul>
         <li className='flex justify-between font-semibold '>
           <div className='flex gap-24'>

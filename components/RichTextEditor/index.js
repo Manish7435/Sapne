@@ -1,14 +1,16 @@
 import { connectToDatabase } from "@/lib/mongodb";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { getCookie } from "@/utils/cookies";
 import SecurityChips from "../SecurityChips";
+import TagChips from "../TagChips";
 
 function RichTextEditor() {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [tag, setTag] = useState("");
+  const [securityTag, setSecurityTag] = useState("Private")
 
   const id = getCookie('user_id')
 
@@ -55,7 +57,7 @@ function RichTextEditor() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({title, tag, dream: content, dreamerId: id})
+        body: JSON.stringify({title, tag, dream: content, dreamerId: id, security:securityTag })
       })
       if(res.ok){
         console.log('dream stored successfully')
@@ -65,43 +67,24 @@ function RichTextEditor() {
     }    
   };
 
-  const handleClick = (event) => {
+  const handleTagClick = (event) => {
     if (event.target.tagName === 'DIV') {
       const textContent = event.target.textContent;
       setTag(textContent)
     }
   };
 
+  const handleSecurityTag = (e)=>{
+    setSecurityTag(e.target.textContent)
+  }
+
   return (
     <>
-     <div className="flex mb-4" onClick={handleClick}>
-        {/* <div className="bg-emerald-400 px-3 py-1 h-[24px] flex items-center justify-center rounded-sm cursor-pointer" >
-          Public
-        </div>
-        <div className="bg-orange-400 px-3 py-1 rounded-md ml-4 cursor-pointer">
-          Private
-        </div> */}
-<SecurityChips/>
+      <div className="flex mb-4">
+        <SecurityChips onClickHandler = {handleSecurityTag}/>
       </div>
-      <div className="flex mb-4" onClick={handleClick}>
-        <div className="bg-emerald-400 px-3 py-1 rounded-md cursor-pointer" >
-          Happy
-        </div>
-        <div className="bg-red-500 px-3 py-1 rounded-md ml-4 cursor-pointer">
-          Horror
-        </div>
-        <div className="bg-orange-400 px-3 py-1 rounded-md ml-4 cursor-pointer">
-          Exciting
-        </div>
-        <div className="bg-gray-500 px-3 py-1 rounded-md ml-4 cursor-pointer">
-          Sad
-        </div>
-        <div className="bg-indigo-400 px-3 py-1 rounded-md ml-4 cursor-pointer">
-          Seduction
-        </div>
-        <div className="bg-green-100 px-3 py-1 rounded-md ml-4 cursor-pointer">
-          Disappointment
-        </div>
+      <div className="flex mb-4" >
+        <TagChips handleTagClick={handleTagClick}/>
       </div>
       <input
         className="border-none outline-none w-full bg-[#1B1B1B] text-[#444]"
@@ -114,7 +97,7 @@ function RichTextEditor() {
           theme="snow"
           value={content}
           onChange={setContent}
-          className="border-none bg-[#1B1B1B] h-96 text-[#444] "
+          className="bg-[#1B1B1B] h-56 text-[#444] "
           modules={modules}
           formats={formats}
         />
@@ -123,7 +106,7 @@ function RichTextEditor() {
         onClick={handleSaveContent}
         className="bg-slate-600 rounded-lg px-3 py-1 mt-4"
       >
-        Save Content
+        Save Dream
       </button>
     </>
   );
