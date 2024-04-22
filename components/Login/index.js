@@ -20,6 +20,7 @@ const Login = () => {
 
   if(data){
     setCookie('user_id',data?.token.sub)
+    setCookie('user_name',data?.token.name)
   }
 
   const onSubmit = async (data) => {

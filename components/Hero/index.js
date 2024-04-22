@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <div className=" h-screen  text-white flex p-28">
         <div>
-            <div className="font-extrabold text-[100px] font-sans w-[500px] bg-clip-text text-transparent bg-gradient-to-t from-[#30A0F1] leading-tight to-[#7EF6BC]">
+            <div className="font-extrabold text-[100px] w-[500px] bg-clip-text text-transparent bg-gradient-to-t from-[#30A0F1] leading-tight to-[#7EF6BC]">
             WHAT DID YOU SEE?
             </div>
             <div className='bg-white text-black text-[12px] px-5 py-2 w-fit rounded-3xl flex items-center mt-10 cursor-pointer'>

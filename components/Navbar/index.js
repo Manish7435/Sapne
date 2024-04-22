@@ -9,7 +9,8 @@ import { ModeToggle } from '../Toggle';
 
 export const Navebar = () => {
 
-  const router = usePathname()  
+  const router = usePathname()
+  
   const navItems = ["Home","Dreams", "MyDreams"]
 
   const handleSignOut = ()=>{
@@ -18,7 +19,7 @@ export const Navebar = () => {
   const splittedRouter = router.split('/')
  
   return (
-    <div className={`text-[#AEB6D2] bg-inherit w-full text-[14px] px-28 py-6 fixed z-40`} >
+    <div className={`text-[#AEB6D2] bg-inherit w-full text-[14px] px-28 py-6 fixed z-40`}>
       <ul>
         <li className='flex justify-between font-semibold '>
           <div className='flex gap-24'>
@@ -31,12 +32,10 @@ export const Navebar = () => {
             })}
           </div>
          
-          <div className='flex gap-20'>
+          <div className='flex items-center gap-20'>
             <ModeToggle/>
-          <Button>Profile</Button>
-          <div className='cursor-pointer' onClick={handleSignOut}>
+            <div className='cursor-pointer' onClick={handleSignOut}>
               SignOut
-                 {/* <Image src={'/MProfile.svg'} height={30} width={30} alt='profile'/> */}
             </div>
           </div>
         </li>

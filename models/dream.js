@@ -21,6 +21,10 @@ const dreamSchema = new Schema(
     security:{
       type: String,
       required: true,
+    },
+    dreamerName:{
+      type: String,
+      required: true,
     }
   },
   { timestamps: true }

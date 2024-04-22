@@ -5,13 +5,16 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
 
 const Register = () => {
   const { register, handleSubmit, reset } = useForm();
   const router = useRouter();
+  const {toast} = useToast()
 
   const onSubmit = async (data) => {
     const { name, email, password } = data;
+    
     await connectToDatabase();
     try {
       const userExists = await fetch("/api/user/exists", {
@@ -25,7 +28,7 @@ const Register = () => {
       const { user } = await userExists.json();
 
       if (user) {
-        console.log("user already exists");
+        toast({title: "Dreamer already exists"})
         return;
       }
 
@@ -38,6 +41,7 @@ const Register = () => {
       });
 
       if (res.ok) {
+        toast({title: "Dreamer registered successfully"})
         reset();
         router.push("/dreams");
       } else {

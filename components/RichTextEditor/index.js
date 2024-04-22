@@ -5,7 +5,8 @@ import "react-quill/dist/quill.snow.css";
 import { getCookie } from "@/utils/cookies";
 import SecurityChips from "../SecurityChips";
 import TagChips from "../TagChips";
-import Button from "../Navbar/Button";
+import { useToast } from "../ui/use-toast";
+
 
 function RichTextEditor() {
   const [content, setContent] = useState("");
@@ -13,7 +14,10 @@ function RichTextEditor() {
   const [tag, setTag] = useState("");
   const [securityTag, setSecurityTag] = useState("Private")
 
+  const { toast } = useToast()
+
   const id = getCookie('user_id')
+  const dreamerName = getCookie('user_name')
 
   const modules = {
     toolbar: [
@@ -58,21 +62,31 @@ function RichTextEditor() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({title, tag, dream: content, dreamerId: id, security:securityTag })
+        body: JSON.stringify({title, tag, dream: content, dreamerId: id, security:securityTag , dreamerName})
       })
       if(res.ok){
-        console.log('dream stored successfully')
+        toast({
+          title: "Dream stored successfully",
+        })
+        setContent("")
+        setSecurityTag("")
+        setTag("")
+        setTitle("")
+      }
+      else {
+        toast({
+          title: "Error",
+          description: "All field are required to store the dream"
+        });
       }
     }catch(e){
-      console.log('error while storing dream',e)
+      console.log(e)
     }    
   };
 
   const handleTagClick = (event) => {
-    if (event.target.tagName === 'DIV') {
       const textContent = event.target.textContent;
       setTag(textContent)
-    }
   };
 
   const handleSecurityTag = (e)=>{
@@ -103,8 +117,8 @@ function RichTextEditor() {
           formats={formats}
         />
       </div>
-    
-       <Button onClick={handleSaveContent}> Save</Button>
+
+       <button className="h-8 flex items-center rounded-md  bg-emerald-500 px-4 py-2 my-4" onClick={handleSaveContent}> Save</button>
   
     </>
   );
