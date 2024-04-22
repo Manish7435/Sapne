@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export const Hero = () => {
   return (
-    <div className="bg-[#0A0B07] h-screen  text-white flex p-28">
+    <div className=" h-screen  text-white flex p-28">
         <div>
             <div className="font-extrabold text-[100px] font-sans w-[500px] bg-clip-text text-transparent bg-gradient-to-t from-[#30A0F1] leading-tight to-[#7EF6BC]">
             WHAT DID YOU SEE?

@@ -5,6 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import { getCookie } from "@/utils/cookies";
 import SecurityChips from "../SecurityChips";
 import TagChips from "../TagChips";
+import Button from "../Navbar/Button";
 
 function RichTextEditor() {
   const [content, setContent] = useState("");
@@ -87,7 +88,7 @@ function RichTextEditor() {
         <TagChips handleTagClick={handleTagClick}/>
       </div>
       <input
-        className="border-none outline-none w-full bg-[#1B1B1B] text-[#444]"
+        className="border-none outline-none w-full bg-gray-500  text-[#444]"
         placeholder="Title"
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -97,17 +98,14 @@ function RichTextEditor() {
           theme="snow"
           value={content}
           onChange={setContent}
-          className="bg-[#1B1B1B] h-56 text-[#444] "
+          className="bg-gray-500 h-56 text-[#444] "
           modules={modules}
           formats={formats}
         />
       </div>
-      <button
-        onClick={handleSaveContent}
-        className="bg-slate-600 rounded-lg px-3 py-1 mt-4"
-      >
-        Save Dream
-      </button>
+    
+       <Button onClick={handleSaveContent}> Save</Button>
+  
     </>
   );
 }

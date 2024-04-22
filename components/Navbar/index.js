@@ -4,16 +4,12 @@ import Link from 'next/link'
 import React from 'react'
 import { signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
+import Button from './Button';
+import { ModeToggle } from '../Toggle';
 
 export const Navebar = () => {
 
-  const router = usePathname()
-
-let bgColor = '#FFFFFF'
-  if(router !== '/login'){
-      bgColor = 'black'
-  }
-  
+  const router = usePathname()  
   const navItems = ["Home","Dreams", "MyDreams"]
 
   const handleSignOut = ()=>{
@@ -22,23 +18,23 @@ let bgColor = '#FFFFFF'
   const splittedRouter = router.split('/')
  
   return (
-    <div className={`text-[#AEB6D2] w-full text-[14px] px-28 py-6 fixed z-40`} style={{background: bgColor}}>
+    <div className={`text-[#AEB6D2] bg-inherit w-full text-[14px] px-28 py-6 fixed z-40`} >
       <ul>
         <li className='flex justify-between font-semibold '>
           <div className='flex gap-24'>
             {navItems.map((nav)=>{
               return (
               <Link href= { nav === "Home"? '/':`/${nav.toLowerCase()}`} key={nav}>
-                    <div className={(splittedRouter[1] === nav.toLowerCase())? 'text-[#55F85C]':''}  >{nav}</div>
+                    <div className={(splittedRouter[1] === nav.toLowerCase())? 'text-[#55F85C]':''}  > <Button>{nav}</Button></div>
               </Link>
               )
             })}
           </div>
+         
           <div className='flex gap-20'>
-            <div className='cursor-pointer'>
-                 Profile
-            </div>
-            <div className='cursor-pointer' onClick={handleSignOut}>
+            <ModeToggle/>
+          <Button>Profile</Button>
+          <div className='cursor-pointer' onClick={handleSignOut}>
               SignOut
                  {/* <Image src={'/MProfile.svg'} height={30} width={30} alt='profile'/> */}
             </div>

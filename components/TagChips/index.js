@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const tags = [{tag: 'Happy', color: '#8fce00'},{tag: 'Horror', color: '#F47C74'},{tag: 'Exciting', color: 'orange'},{tag: 'Sad', color: 'gray'},{tag: 'Seduction', color: 'violet'},{tag: 'Disappointment', color: 'azure'}]
+const tags = [{tag: 'Happy', color: '#8fce00'},{tag: 'Horror', color: '#F47C74'},{tag: 'Exciting', color: 'orange'},{tag: 'Sad', color: 'gray'},{tag: 'Seduction', color: 'violet'},{tag: 'Disappointment', color: '#E1D5D2'}]
 function TagChips({handleTagClick}) {
   return (
     <>
