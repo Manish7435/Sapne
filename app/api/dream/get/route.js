@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import Dream from "@/models/dream";
 
-export async function GET() {
+export async function POST() {
   try {
     await connectToDatabase()
     const security = 'Public'

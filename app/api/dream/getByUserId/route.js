@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import Dream from "@/models/dream";
 
-export async function GET(req) {  
+export async function POST(req) {  
   try {
         await connectToDatabase()
         const headers = req.headers;
