@@ -43,7 +43,7 @@ const Register = () => {
       if (res.ok) {
         toast({title: "Dreamer registered successfully"})
         reset();
-        router.push("/dreams");
+        router.push("/mydreams");
       } else {
         console.log("user registartion failed");
       }
