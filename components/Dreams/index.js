@@ -1,5 +1,3 @@
-'use client'
-
 import Container from "../Container"
 import SingleDream from "./SingleDream"
 
