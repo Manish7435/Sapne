@@ -68,10 +68,10 @@ function RichTextEditor() {
         toast({
           title: "Dream stored successfully",
         })
+        setTitle("")
         setContent("")
         setSecurityTag("")
         setTag("")
-        setTitle("")
       }
       else {
         toast({
@@ -84,15 +84,14 @@ function RichTextEditor() {
     }    
   };
 
-  const handleTagClick = (event) => {
-      const textContent = event.target.textContent;
-      setTag(textContent)
+  const handleTagClick = (tag) => {
+      setTag(tag)
   };
-
-  const handleSecurityTag = (e)=>{
-    setSecurityTag(e.target.textContent)
-  }
-
+console.log(tag)
+  const handleSecurityTag = (val) => {
+    setSecurityTag(val);
+  };
+  
   return (
     <>
       <div className="flex mb-4">
