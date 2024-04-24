@@ -4,7 +4,7 @@ import SingleDream from "./SingleDream"
 
 const Dreams = ()=>{
   return(
-    <div className=" py-20">
+    <div className=" sm:py-20">
     <Container >
       <SingleDream endPoint={'/api/dream/get'}/>
     </Container>

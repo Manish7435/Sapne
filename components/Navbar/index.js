@@ -29,7 +29,7 @@ export const Navebar = () => {
  
   return (
 <>
-      <div className={`text-[#AEB6D2] bg-inherit w-full text-[14px] sm:px-28 sm:py-6 p-8 fixed z-40 `}>
+      <div className={`text-[#AEB6D2] bg-inherit w-full text-[14px] sm:px-28 sm:py-6 p-4 fixed z-40 `}>
         <ul className='sm:block hidden'>
           <li className='flex justify-between font-semibold '>
             <div className='flex gap-24'>

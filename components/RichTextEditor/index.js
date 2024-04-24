@@ -97,7 +97,7 @@ console.log(tag)
       <div className="flex mb-4">
         <SecurityChips onClickHandler = {handleSecurityTag}/>
       </div>
-      <div className="flex mb-4" >
+      <div className="flex mb-4 " >
         <TagChips handleTagClick={handleTagClick}/>
       </div>
       <input
@@ -111,7 +111,7 @@ console.log(tag)
           theme="snow"
           value={content}
           onChange={setContent}
-          className="bg-gray-500 h-56 text-[#444] "
+          className="bg-gray-500 sm:h-56 text-[#444] "
           modules={modules}
           formats={formats}
         />

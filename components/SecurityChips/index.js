@@ -22,9 +22,9 @@ export default function SecurityChips({ onClickHandler }) {
           style={{
             background: selectedChip === index ? item.color : item.neutral,
           }}
-          className={`p-4 h-[24px] flex items-center justify-center rounded-md cursor-pointer ${
-            index !== 0 ? "ml-3" : ""
-          }`}
+          className={`sm:p-4 p-2 h-[24px] sm:text-base text-sm flex items-center justify-center rounded-md cursor-pointer mt-24 ${
+            index !== item.length ? "mr-3" : ""
+          } `}
         >
           {item.privacy}
         </div>

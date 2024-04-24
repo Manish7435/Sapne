@@ -17,7 +17,7 @@ function TagChips({ handleTagClick }) {
   };
 
   return (
-    <>
+    <div className="flex flex-wrap">
       {tags.map((item, index) => {
         return (
           <div
@@ -25,8 +25,8 @@ function TagChips({ handleTagClick }) {
             style={{
               background: selectedTag === index ? item.color : item.neutral,
             }}
-            className={`p-4 h-[24px] flex items-center justify-center rounded-md cursor-pointer ${
-              index !== 0 ? "ml-3" : ""
+            className={`sm:p-4 p-2 h-[24px] sm:text-base text-sm flex items-center justify-center rounded-md cursor-pointer mt-2 ${
+              index !== item.length ? "mr-3" : ""
             } `}
             onClick={() => handleClick(index, item.tag)}
           >
@@ -34,7 +34,7 @@ function TagChips({ handleTagClick }) {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 
