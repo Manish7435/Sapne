@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Button({children}) {
+function ButtonAnimate({children}) {
   return (
     <div className='group overflow-hidden relative text-md cursor-pointer leading-6 '>
         <span className='inline-block transition duration-500 ease-out p-1 group-hover:-translate-y-[120%]'>{children}</span>
@@ -9,4 +9,4 @@ function Button({children}) {
   )
 } 
 
-export default Button
+export default ButtonAnimate

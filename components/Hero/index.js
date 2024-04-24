@@ -5,12 +5,12 @@ import Link from 'next/link'
 
 export const Hero = () => {
   return (
-    <div className=" h-screen  text-white flex p-28">
-        <div>
-            <div className="font-extrabold text-[100px] w-[500px] bg-clip-text text-transparent bg-gradient-to-t from-[#30A0F1] leading-tight to-[#7EF6BC]">
+    <div className="h-screen  text-white flex sm:p-28 p-8">
+        <div className='flex flex-col items-center sm:items-start' >
+            <div className="font-extrabold sm:text-[100px] sm:w-[500px] text-[70px] bg-clip-text text-transparent bg-gradient-to-t from-[#30A0F1] leading-tight to-[#7EF6BC] sm:h-auto h-screen flex items-center text-center sm:text-left">
             WHAT DID YOU SEE?
             </div>
-            <div className='bg-white text-black text-[12px] px-5 py-2 w-fit rounded-3xl flex items-center mt-10 cursor-pointer'>
+            <div className='bg-white text-black text-[12px] px-5 py-2 w-fit rounded-3xl flex items-center sm:mt-10 -mt-32 cursor-pointer'>
                 <Link href={'/login'}>
                      Let&apos;s keep track of  our dreams
                 </Link>
@@ -18,7 +18,7 @@ export const Hero = () => {
             </div>
         </div>
         
-        <div className="grid grid-cols-3 w-[500px] ml-32 gap-3 ">
+        <div className="sm:grid grid-cols-3 w-[500px] ml-32 gap-3 hidden ">
             <div className="relative overflow-hidden row-span-3 bg-white p-3 rounded-md">
                 <Image
                         src="https://media2.giphy.com/media/cLkg857UN0y4ISQoTT/giphy.webp?cid=ecf05e4750f84pd6ml2j286z3xnlkn0n9xi6z80dvojkhqia&ep=v1_gifs_search&rid=giphy.webp&ct=g"

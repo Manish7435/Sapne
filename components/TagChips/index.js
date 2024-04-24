@@ -1,5 +1,3 @@
-// "use client"
-
 import React, { useState } from "react";
 const tags = [
   { tag: "Happy", color: "#8fce00", neutral: "gray" },
