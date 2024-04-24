@@ -1,3 +1,13 @@
+export const tags = [
+  { tag: "Happy", color: "#8fce00", neutral: "gray" },
+  { tag: "Horror", color: "#F47C74", neutral: "gray" },
+  { tag: "Exciting", color: "orange", neutral: "gray" },
+  { tag: "Sad", color: "#FFC5D0", neutral: "gray" },
+  { tag: "Seduction", color: "violet", neutral: "gray" },
+  { tag: "Disappointment", color: "#E1D5D2", neutral: "gray" },
+];
+
+
 export const gifs = [
   {
     img: "https://media2.giphy.com/media/cLkg857UN0y4ISQoTT/giphy.webp?cid=ecf05e4750f84pd6ml2j286z3xnlkn0n9xi6z80dvojkhqia&ep=v1_gifs_search&rid=giphy.webp&ct=g",

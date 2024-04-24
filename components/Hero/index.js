@@ -10,7 +10,7 @@ export const Hero = () => {
             <div className="font-extrabold sm:text-[100px] sm:w-[500px] text-[70px] bg-clip-text text-transparent bg-gradient-to-t from-[#30A0F1] leading-tight to-[#7EF6BC] sm:h-auto h-screen flex items-center text-center sm:text-left">
             WHAT DID YOU SEE?
             </div>
-            <div className='bg-white text-black text-[12px] px-5 py-2 w-fit rounded-3xl flex items-center sm:mt-10 -mt-32 cursor-pointer'>
+            <div className='bg-slate-800 dark:bg-white text-white dark:text-black text-[12px] px-5 py-2 w-fit rounded-3xl flex items-center sm:mt-10 -mt-32 cursor-pointer'>
                 <Link href={'/login'}>
                      Let&apos;s keep track of  our dreams
                 </Link>
