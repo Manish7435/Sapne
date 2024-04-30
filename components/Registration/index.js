@@ -60,8 +60,8 @@ const Register = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <input type="text" placeholder="Fullname" {...register("name")} />
-          <input type="text" placeholder="Email" {...register("email")} />
-          <input type="text" placeholder="Password" {...register("password")} />
+          <input type="email" placeholder="Email" {...register("email")} />
+          <input type="password" placeholder="Password" {...register("password")} />
           <input
             type="submit"
             className="bg-[#FA7484] px-8 py-2 rounded-md flex justify-center cursor-pointer font-medium w-[300px]"

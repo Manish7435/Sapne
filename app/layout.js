@@ -4,31 +4,33 @@ import "./globals.css";
 import { AuthProvider } from "./Providers";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster"
+import StoreProvider from "@/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Sapne",
-  description: "see your dream anytime",
+  description: "See your dream anytime",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-          
-              <Navebar/>
-              {children}
-              <Toaster/>
-         </ThemeProvider>
-        </AuthProvider>
+        {/* <StoreProvider> */}
+            <AuthProvider>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                  <Navebar/>
+                  {children}
+                  <Toaster/>
+            </ThemeProvider>
+            </AuthProvider>
+        {/* </StoreProvider> */}
        </body>
     </html>
   );
