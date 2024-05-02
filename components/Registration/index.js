@@ -14,6 +14,8 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     const { name, email, password } = data;
+
+    const isVerified = false
     
     await connectToDatabase();
     try {
@@ -37,7 +39,7 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: name.toLowerCase(), email: email.toLowerCase(), password }),
+        body: JSON.stringify({ name: name.toLowerCase(), email: email.toLowerCase(), password ,isVerified }),
       });
 
       if (res.ok) {

@@ -14,6 +14,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    isVerified: {type: String},
+    forgetPasswordToken: {type: String},
+    forgetPasswordTokenExpiry: {type:Date},
+    verifyToken: {type: String},
+    verifyTokenExpiry: {type:Date}
   },
   { timestamps: true }
 );

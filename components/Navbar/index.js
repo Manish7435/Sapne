@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import ButtonAnimate from './Button';
 import { ModeToggle } from '../Toggle';
 import { Button } from "@/components/ui/button"
+import { useSession } from 'next-auth/react';
 
 import {
   DropdownMenu,
@@ -17,6 +18,8 @@ import {
 import { AlignLeft } from 'lucide-react';
 
 export const Navebar = () => {
+
+  const {data} = useSession()
 
   const router = usePathname()
   
@@ -44,9 +47,16 @@ export const Navebar = () => {
           
             <div className='flex items-center gap-20'>
               <ModeToggle/>
-              <div className='cursor-pointer' onClick={handleSignOut}>
-                SignOut
-              </div>
+              {
+                data?.token ?
+                  <div className='cursor-pointer' onClick={handleSignOut}>
+                    SignOut
+                  </div> :(splittedRouter[1]!== 'login'? <div className='cursor-pointer'>
+                        <Link href={'/login'}>
+                            SignIn
+                        </Link>
+                  </div>: "")
+              }
             </div>
           </li>
         </ul>
@@ -69,8 +79,16 @@ export const Navebar = () => {
                   )
                 })}
               <DropdownMenuItem onClick={handleSignOut}>
-
-                SignOut
+              {
+                data?.token ?
+                  <div className='cursor-pointer' onClick={handleSignOut}>
+                    SignOut
+                  </div> :(splittedRouter[1]!== 'login' ? <div className='cursor-pointer'>
+                        <Link href={'/login'}>
+                            SignIn
+                        </Link>
+                  </div>: "")
+              }
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
